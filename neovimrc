@@ -1,0 +1,258 @@
+" Install vim-gtk to have access to the clipboard
+
+" Install Vundle
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+" Install NERD fonts
+" git clone https://github.com/ryanoasis/nerd-fonts.git
+" ./install
+" Droid Sans Mono Slashed for Powerline
+
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.fzf
+call vundle#rc()
+
+" This is the Vundle package, which can be found on GitHub.
+" For GitHub repos, you specify plugins using the
+" 'user/repository' format
+Plugin 'gmarik/vundle'
+
+" Powerline for vim
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'airblade/vim-gitgutter'
+
+" Notes
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'janko/vim-test'
+
+" Autocomplete
+" Plugin 'zxqfl/tabnine-vim'
+Plugin 'dense-analysis/ale'
+" Plugin 'roxma/vim-hug-neovim-rpc'
+
+" JS and react
+" Plugin 'icholy/typescript-tools'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'prettier/vim-prettier'
+
+" Python
+Plugin 'psf/black'
+
+" Erlang / Elixir
+Plugin 'vim-erlang/vim-erlang-runtime'
+Plugin 'elixir-editors/vim-elixir'
+
+" log highlight
+Plugin 'mtdl9/vim-log-highlighting'
+
+" coffescript
+Plugin 'kchmck/vim-coffee-script'
+
+" Now we can turn our filetype functionality back on
+filetype plugin indent on
+
+colorscheme nazca
+let g:netrw_liststyle=3
+let skip_defaults_vim=1
+set cindent
+set encoding=utf-8
+set foldmethod=syntax
+set spellcapcheck=
+set t_Co=256
+set viminfo=""
+hi Directory guifg=#FF0000 ctermfg=red
+au BufReadPost *.log set syntax=config
+au BufReadPost *.call set syntax=config
+au BufReadPost *.template set syntax=python
+au BufReadPost *.jsp set syntax=javascript
+au BufReadPost *.tag set syntax=html
+set autoread
+
+command! -nargs=1 Silent
+      \   execute 'silent !' . <q-args>
+      \ | execute 'redraw!'
+
+nnoremap <silent> <leader>q :bw<CR>
+nnoremap <silent> <leader>d :echo expand('%:p')<CR>
+nnoremap <silent> <leader>o o<ESC>
+nnoremap <silent> <leader>O O<ESC>
+nnoremap <silent> <leader><space> :Vexplore<CR>
+nnoremap <silent> <leader>m :set filetype=messages<ESC>
+nnoremap <silent> <leader>z :syntax region htmlFold start="<\z(\<\(area\\|base\\|br\\|col\\|command\\|embed\\|hr\\|img\\|input\\|keygen\\|link\\|meta\\|para\\|source\\|track\\|wbr\>\)\@![a-z-]\+\>\)\%(\_s*\_[^/]\?>\\|\_s\_[^>]*\_[^>/]>\)" end="</\z1\_s*>" fold transparent keepend extend containedin=htmlHead,htmlH\d<CR>
+nmap <silent> <leader>k :wincmd k<CR>
+nmap <silent> <leader>j :wincmd j<CR>
+nmap <silent> <leader>h :wincmd h<CR>
+nmap <silent> <leader>l :wincmd l<CR>
+nnoremap <leader>bn :bn<cr>
+nnoremap <leader>bp :bp<cr>
+"nnoremap <silent> <C-S> :Silent zsh<cr>
+nnoremap <space> za
+nnoremap <C-]> g<C-]>
+nnoremap <silent> <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+nnoremap <silent> <leader><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+hi VertSplit ctermbg=NONE guibg=NONE
+
+"nmap <silent> <leader>1 :buffer 1<cr>
+"nmap <silent> <leader>2 :buffer 2<cr>
+"nmap <silent> <leader>3 :buffer 3<cr>
+"nmap <silent> <leader>4 :buffer 4<cr>
+"nmap <silent> <leader>5 :buffer 5<cr>
+"nmap <silent> <leader>6 :buffer 6<cr>
+"nmap <silent> <leader>7 :buffer 7<cr>
+"nmap <silent> <leader>8 :buffer 8<cr>
+"nmap <silent> <leader>9 :buffer 9<cr>
+"nmap <silent> <leader>0 :buffer 10<cr>
+
+nmap <leader>1 <plug>AirlineSelectTab1
+nmap <leader>2 <plug>AirlineSelectTab2
+nmap <leader>3 <plug>AirlineSelectTab3
+nmap <leader>4 <plug>AirlineSelectTab4
+nmap <leader>5 <plug>AirlineSelectTab5
+nmap <leader>6 <plug>AirlineSelectTab6
+nmap <leader>7 <plug>AirlineSelectTab7
+nmap <leader>8 <plug>AirlineSelectTab8
+nmap <leader>9 <plug>AirlineSelectTab9
+nmap <leader>0 <plug>AirlineSelectTab10
+nmap <leader>- <plug>AirlineSelectPrevTab
+nmap <leader>+ <plug>AirlineSelectNextTab
+
+autocmd InsertEnter *
+        \ if !exists('w:last_fdm') |
+        \     let w:last_fdm=&foldmethod |
+        \     setlocal foldmethod=manual |
+        \ endif
+
+autocmd InsertLeave,WinLeave *
+        \ if exists('w:last_fdm') |
+        \     let &l:foldmethod=w:last_fdm |
+        \     unlet w:last_fdm |
+        \ endif
+
+set path+=**
+set wildmenu
+"set spell
+set spellfile=~/.vim/spell/en.utf-8.add
+command! MakeTags !ctags -RV . && gentags
+
+set showcmd
+let g:netrw_winsize = 20
+"set laststatus=2
+set ttimeoutlen=50
+
+let g:airline_powerline_fonts = 1
+let g:airline_theme='bubblegum'
+let g:airline_detect_spell=0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#default#section_truncate_width = {
+    \ 'b': 60,
+    \ 'x': 60,
+    \ 'y': 88,
+    \ 'z': 45,
+    \ 'warning': 80,
+    \ 'error': 80,
+    \ }
+
+"let g:airline_section_b = '%-{getcwd()}'
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" Erlang
+let g:erlang_highlight_special_atoms = 1
+
+"let g:airline_symbols.space = "\ua0"
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#tab_nr_type = 2
+"let g:airline#extensions#tabline#buffer_nr_show = 1
+"
+let g:airline#extensions#branch#enabled = 0
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#hunks#non_zero_only = 0
+let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
+
+"set statusline=%F
+set backspace=indent,eol,start
+
+set directory=/tmp/vim
+set backupdir=/tmp/vim/backupdir/
+set undodir=/tmp/vim/undodir/
+
+let g:gitgutter_sign_added = '＋'
+let g:gitgutter_sign_modified = '～'
+let g:gitgutter_sign_removed = '－'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '－'
+
+let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
+
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+let g:jsx_ext_required = 1
+let g:ale_completion_enabled = 1
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+\   'python': [ 'flake8', 'black'],
+\   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
+\   'typescriptreact': ['prettier', 'eslint'],
+\   'vue': ['eslint'],
+\   'css': ['prettier']
+\}
+
+augroup javascript_folding
+  au!
+  au FileType javascript setlocal foldmethod=syntax
+augroup END
+
+let g:airline#extensions#ale#enabled = 1
+let g:prettier#quickfix_enabled = 0
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+let g:black_fast = 0
+let g:black_linelength = 80
+
+syntax on
+syntax enable
+
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.py execute ":Black"
+
+let g:deoplete#enable_at_startup = 1
+autocmd FileType netrw setl bufhidden=wipe
+let g:netrw_altv=1
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+
+hi ALEWarning ctermbg=NONE
+hi ALEWarningSing ctermbg=NONE
+hi ALEWaringhighlight ctermbg=NONE
+
+function FormatBuffer()
+  if &modified && !empty(findfile('.clang-format', expand('%:p:h') . ';'))
+    let cursor_pos = getpos('.')
+    silent %!clang-format
+    call setpos('.', cursor_pos)
+  endif
+  echo "clang-format ran successfully"
+endfunction
+
+" https://jonasjacek.github.io/colors/
+" group under cursor
+" nnoremap <leader>l :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") ."> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
