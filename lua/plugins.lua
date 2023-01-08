@@ -39,6 +39,7 @@ return require("packer").startup({
         -- Powerline alternative.
         use("vim-airline/vim-airline")
         use("vim-airline/vim-airline-themes")
+        use("ryanoasis/vim-devicons")
 
         -- Display buffer tabs.
         use({
@@ -73,12 +74,6 @@ return require("packer").startup({
                 { "L3MON4D3/LuaSnip" },
                 { "rafamadriz/friendly-snippets" },
             },
-        })
-
-        -- Icon set for neovim plugins and settings.
-        use({
-            "yamatsum/nvim-nonicons",
-            requires = { "kyazdani42/nvim-web-devicons" },
         })
 
         -- Code formatter.

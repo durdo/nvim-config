@@ -57,3 +57,6 @@ vim.diagnostic.config({
         prefix = "",
     },
 })
+
+-- And use make my icons explicit.
+lsp.set_sign_icons({ error = "✘", info = "➜", warn = "▲", hint = "⚑" })

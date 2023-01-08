@@ -1,4 +1,3 @@
-local icons = require("nvim-nonicons")
 local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "fh", builtin.help_tags, {})
@@ -11,7 +10,7 @@ vim.keymap.set("n", "fs", builtin.live_grep, {})
 
 require("telescope").setup({
     defaults = {
-        prompt_prefix = "  " .. icons.get("telescope") .. "  ",
+        prompt_prefix = "  ",
         selection_caret = " ❯ ",
         entry_prefix = "   ",
     },
