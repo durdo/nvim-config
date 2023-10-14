@@ -10,7 +10,7 @@ vim.keymap.set("n", "fs", builtin.live_grep, {})
 
 require("telescope").setup({
     defaults = {
-        prompt_prefix = "  ",
+        prompt_prefix = "   ",
         selection_caret = " ❯ ",
         entry_prefix = "   ",
     },

@@ -85,7 +85,6 @@ return require("packer").startup({
         -- Telescope is a fuzzy finder, much like FZF.
         use({
             "nvim-telescope/telescope.nvim",
-            tag = "0.1.0",
             requires = { { "nvim-lua/plenary.nvim" } },
         })
 
