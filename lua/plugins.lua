@@ -30,7 +30,7 @@ return require("packer").startup({
             requires = {
                 "nvim-tree/nvim-web-devicons", -- optional, for file icons
             },
-            tag = "nightly", -- optional, updated every week. (see issue #1193)
+            tag = "nightly",                   -- optional, updated every week. (see issue #1193)
         })
 
         -- Git functions.
@@ -77,7 +77,13 @@ return require("packer").startup({
         })
 
         -- Code formatter.
-        use("sbdchd/neoformat")
+        use("nvimtools/none-ls.nvim")
+        use({
+            "jay-babu/mason-null-ls.nvim",
+            dependencies = {
+                "williamboman/mason.nvim",
+            },
+        })
 
         -- LSP diagnostics on a small popup window.
         use("kaputi/e-kaput")

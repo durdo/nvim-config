@@ -1,11 +1,62 @@
+-- This section is for code formating
+require("mason").setup()
+require("mason-null-ls").setup({
+    ensure_installed = {
+        "black",
+        "google_java_format",
+        "checkstyle",
+        "pint",
+    },
+    automatic_installation = true,
+    automatic_setup = true,
+})
+
+local null_ls = require("null-ls")
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.pint,
+        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.google_java_format,
+        null_ls.builtins.diagnostics.checkstyle.with({
+            extra_args = { "-c", "/google_checks.xml" },
+        }),
+    },
+})
+
+-- Actual LSP configuration
 require("lspconfig.ui.windows").default_options.border = "single"
 local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    "tsserver",
-    "eslint",
+    "clangd",   -- C, C++
+    "erlangls", -- Erlang
+    "hls",      -- Haskel
+    "jdtls",    -- Java
+    "lua_ls",   -- Lua
+    "phpactor", -- PHP - requires `.phpactor.json` (must be a valid JSON)
+    "pyright",  -- Python
+    "taplo",    -- Toml
+    "tsserver", -- Javascript / Typescript
+    "eslint",   -- Javascript / Typescript
+})
+
+-- Don't add this function in the `on_attach` callback.
+-- `format_on_save` should run only once, before the
+-- language servers are active.
+lsp.format_on_save({
+    format_opts = {
+        async = false,
+        timeout_ms = 10000,
+    },
+    servers = {
+        ['erlangls'] = { 'erlang' },
+        ['lua_ls'] = { 'lua' },
+        ['clangd'] = { 'c', 'cpp' },
+        ['null-ls'] = { 'python', 'haskell', 'php' },
+        ['tsserver'] = { 'javascript', 'typescript' },
+    }
 })
 
 local display_info = function()
@@ -33,6 +84,30 @@ end)
 local cmp = require("cmp")
 local cmp_config = lsp.defaults.cmp_config({
     window = { completion = cmp.config.window.bordered() },
+    mapping = cmp.mapping.preset.insert({
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- Up
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),  -- Down
+        -- C-b (back) C-f (forward) for snippet placeholder navigation.
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+    }),
 })
 
 cmp.setup(cmp_config)

@@ -21,10 +21,10 @@ vim.opt.cursorline = true
 vim.opt.expandtab = true
 
 -- Tab inserts 4 spaces.
-vim.opt.shiftwidth = 2
+vim.opt.shiftwidth = 4
 
 -- Tab are represented as 4 spaces.
-vim.opt.tabstop = 2
+vim.opt.tabstop = 4
 
 -- Bigger lines will require scrolling.
 vim.opt.wrap = false
