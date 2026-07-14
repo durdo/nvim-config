@@ -19,6 +19,9 @@ let g:airline_symbols.colnr = ' col:'
 let g:airline_symbols.crypt = ''
 let g:airline_symbols.linenr = ' line:'
 let g:airline_symbols.maxlinenr = " \uf0c9 "
+let g:airline_symbols.branch = ''
+let g:airline_symbols.dirty = ''
+let g:airline_symbols.notexists = ''
 
 let airline#extensions#nvimlsp#error_symbol = 'Errors: '
 let airline#extensions#nvimlsp#warning_symbol = 'Warnings: '
