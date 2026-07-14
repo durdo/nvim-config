@@ -2,37 +2,6 @@ require("nvim-tree").setup({
     sync_root_with_cwd = true,
     view = {
         adaptive_size = false,
-        mappings = {
-            list = {
-                { key = "<C-v>", action = "" }, -- vsplit
-                { key = "<C-x>", action = "" }, -- split
-                { key = "<C-t>", action = "" }, -- tabnew
-                { key = "<BS>", action = "" }, -- close_node
-                { key = "<Tab>", action = "" }, -- preview
-                { key = "D", action = "" }, -- trash
-                { key = "[e", action = "" }, -- prev_diag_item
-                { key = "]e", action = "" }, -- next_diag_item
-                { key = "[c", action = "" }, -- prev_git_item
-                { key = "]c", action = "" }, -- next_git_item
-                { key = "-", action = "" }, -- dir_up
-                { key = "s", action = "" }, -- system_open
-                { key = "W", action = "" }, -- collapse_all
-                { key = "g?", action = "" }, -- toggle_help
-
-                { key = "d", action = "cd" }, -- remove
-                { key = "x", action = "remove" }, -- cut
-
-                { key = "t", action = "cut" },
-                { key = "]d", action = "prev_diag_item" },
-                { key = "[d", action = "next_diag_item" },
-                { key = "]g", action = "prev_git_item" },
-                { key = "[g", action = "next_git_item" },
-                { key = "u", action = "dir_up" },
-                { key = "'", action = "close_node" },
-                { key = '"', action = "collapse_all" },
-                { key = "?", action = "toggle_help" },
-            },
-        },
     },
     renderer = {
         full_name = true,

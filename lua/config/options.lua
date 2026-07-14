@@ -68,7 +68,7 @@ vim.opt.signcolumn = "yes"
 
 -- Disable mouse.
 vim.opt.mouse = ""
-vim.opt.mousemodel = ""
+-- vim.opt.mousemodel = ""
 
 -- A new split is created on the right
 -- and the cursor is moved to it.
@@ -93,7 +93,7 @@ vim.opt.shiftround = true
 
 -- Visual indication for special characters.
 vim.opt.list = true
-vim.opt.listchars:append({ tab = "▒░", trail = "▓" })
+vim.opt.listchars = { tab = "» ", trail = "·" }
 
 -- Allow code folding using treesitter.
 -- vim.opt.foldmethod = "expr"
