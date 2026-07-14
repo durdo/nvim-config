@@ -18,7 +18,7 @@ endif
 let g:airline_symbols.colnr = ' col:'
 let g:airline_symbols.crypt = ''
 let g:airline_symbols.linenr = ' line:'
-let g:airline_symbols.maxlinenr = ' — '
+let g:airline_symbols.maxlinenr = " \uf0c9 "
 
 let airline#extensions#nvimlsp#error_symbol = 'Errors: '
 let airline#extensions#nvimlsp#warning_symbol = 'Warnings: '
@@ -45,4 +45,6 @@ let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#hunks#non_zero_only = 0
-let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
+let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '–']
+
+let g:airline_section_z = '%p%%%#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L%{g:airline_symbols.maxlinenr}%#__restore__#%#__accent_bold#%{g:airline_symbols.colnr}%v%#__restore__#'
