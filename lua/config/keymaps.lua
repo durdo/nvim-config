@@ -7,11 +7,14 @@ vim.keymap.set("n", "<right>", "<Nop>", { noremap = true })
 -- Open netrw.
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { noremap = true })
 
--- Remove highlights.
-vim.keymap.set("n", "<leader><leader>", ":noh<CR>:set nospell<CR>", {
-    noremap = true,
-    silent = true,
-})
+-- Remove trailing spaces.
+vim.keymap.set("n", "<leader><leader>", function()
+    local view = vim.fn.winsaveview()
+    local old_search = vim.fn.getreg("/")
+    vim.cmd([[%s/\s\+$//e]])
+    vim.fn.winrestview(view)
+    vim.fn.setreg("/", old_search)
+end, { noremap = true, silent = true })
 
 -- Close split killing the buffer.
 vim.keymap.set("n", "<leader>q", ":bw<CR>", { noremap = true, silent = true })

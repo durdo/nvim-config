@@ -93,7 +93,7 @@ vim.opt.shiftround = true
 
 -- Visual indication for special characters.
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·" }
+vim.opt.listchars = { tab = "▒░", trail = "▓" }
 
 -- Allow code folding using treesitter.
 -- vim.opt.foldmethod = "expr"
