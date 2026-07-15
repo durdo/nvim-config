@@ -40,4 +40,40 @@ return {
 
     -- Git info will be displayed on the gutter.
     "airblade/vim-gitgutter",
+
+    -- Format on save via external formatters.
+    {
+        "stevearc/conform.nvim",
+        config = function()
+            require("conform").setup({
+                formatters_by_ft = {
+                    javascript = { "prettier" },
+                    javascriptreact = { "prettier" },
+                    typescript = { "prettier" },
+                    typescriptreact = { "prettier" },
+                    html = { "prettier" },
+                    css = { "prettier" },
+                    scss = { "prettier" },
+                    json = { "prettier" },
+                    yaml = { "prettier" },
+                    markdown = { "prettier" },
+                    python = { "black" },
+                    sh = { "shfmt" },
+                    bash = { "shfmt" },
+                    zsh = { "shfmt" },
+                    c = { "clang-format" },
+                    cpp = { "clang-format" },
+                },
+                format_on_save = {
+                    timeout_ms = 3000,
+                    lsp_format = "fallback",
+                },
+                formatters = {
+                    shfmt = {
+                        command = vim.fn.expand("~/go/bin/shfmt"),
+                    },
+                },
+            })
+        end,
+    },
 }
