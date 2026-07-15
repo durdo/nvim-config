@@ -101,3 +101,16 @@ vim.opt.listchars = { tab = "▒░", trail = "▓" }
 
 -- Disable intro screen.
 vim.opt.shortmess:append("I")
+
+-- Automatically reload files changed outside of nvim.
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+    command = "silent! checktime",
+})
+
+-- Custom gitgutter signs.
+vim.g.gitgutter_sign_added = "+"
+vim.g.gitgutter_sign_modified = "~"
+vim.g.gitgutter_sign_removed = "-"
+vim.g.gitgutter_sign_removed_first_line = "^"
+vim.g.gitgutter_sign_modified_removed = "-"

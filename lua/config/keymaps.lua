@@ -40,3 +40,16 @@ vim.keymap.set(
     "<leader>s",
     [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
 )
+
+-- Insert blank line below/above without entering insert mode.
+vim.keymap.set("n", "<leader>o", "o<ESC>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>O", "O<ESC>", { noremap = true, silent = true })
+
+-- Window navigation.
+vim.keymap.set("n", "<leader>h", "<C-w>h", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>j", "<C-w>j", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>k", "<C-w>k", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>l", "<C-w>l", { noremap = true, silent = true })
+
+-- Toggle fold with space.
+vim.keymap.set("n", "<space>", "za", { noremap = true, silent = true })
