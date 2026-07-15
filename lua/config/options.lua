@@ -98,3 +98,6 @@ vim.opt.listchars = { tab = "▒░", trail = "▓" }
 -- Allow code folding using treesitter.
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Disable intro screen.
+vim.opt.shortmess:append("I")
