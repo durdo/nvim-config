@@ -64,10 +64,10 @@ return {
                     c = { "clang-format" },
                     cpp = { "clang-format" },
                 },
-                format_on_save = {
-                    timeout_ms = 3000,
-                    lsp_format = "fallback",
-                },
+                -- format_on_save = {
+                --     timeout_ms = 3000,
+                --     lsp_format = "fallback",
+                -- },
                 formatters = {
                     shfmt = {
                         command = vim.fn.expand("~/go/bin/shfmt"),
